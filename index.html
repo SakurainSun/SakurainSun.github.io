@@ -1,30 +1,96 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <title>我的互动网站</title>
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>艾可希·米娅资料页</title>
+<style>
     body {
-      font-family: "微软雅黑", sans-serif;
-      text-align: center;
-      margin-top: 50px;
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(to bottom, #cce7ff, #f9f9ff);
+        color: #03396c;
+    }
+    header {
+        text-align: center;
+        padding: 30px;
+        background: #3f8efc;
+        color: white;
+        font-size: 2em;
+        font-weight: bold;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .container {
+        max-width: 800px;
+        margin: 30px auto;
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 6px 10px rgba(0,0,0,0.1);
+    }
+    .profile-img {
+        display: block;
+        margin: 0 auto 20px auto;
+        width: 150px;
+        border-radius: 50%;
+        border: 3px solid #3f8efc;
+    }
+    h2 {
+        text-align: center;
+        color: #0b3d91;
+    }
+    p {
+        line-height: 1.6;
     }
     button {
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        font-size: 1em;
+        border: none;
+        border-radius: 8px;
+        background: #3f8efc;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
     }
-  </style>
+    button:hover {
+        background: #285bb5;
+    }
+    #history {
+        display: none;
+        margin-top: 20px;
+        padding: 15px;
+        background: #eef6ff;
+        border-radius: 8px;
+        border: 1px solid #b3d1ff;
+    }
+</style>
 </head>
 <body>
-  <h1>欢迎来到我的网站！🌸</h1>
-  <p>点击按钮试试互动效果：</p>
-  <button onclick="sayHello()">点我！</button>
+<header>艾可希·米娅的魔法资料页</header>
+<div class="container">
+    <img src="https://via.placeholder.com/150/3f8efc/ffffff?text=米娅" alt="艾可希·米娅" class="profile-img">
+    <h2>基本信息</h2>
+    <p>性别：女 | 种族：苏雅人 | 国籍：茉莉奈神权 | 年龄：16</p>
+    <p>能力：知晓过去的能力（通过物品或抽象事物追溯历史）</p>
+    
+    <button onclick="showHistory()">查看能力历史</button>
+    <div id="history">
+        <p>艾可希出生于神学世家，自小就能追溯过去的历史，记忆不会偏差。虽然无法影响现实，但历史会如实呈现在脑海中。</p>
+        <p>缺点：面对不适情景时可能短暂失去记忆能力。</p>
+    </div>
+</div>
 
-  <script>
-    function sayHello() {
-      alert("你好呀！这是互动示例~ 🎉");
+<script>
+    function showHistory() {
+        const historyDiv = document.getElementById('history');
+        if (historyDiv.style.display === 'none') {
+            historyDiv.style.display = 'block';
+        } else {
+            historyDiv.style.display = 'none';
+        }
     }
-  </script>
+</script>
 </body>
 </html>
