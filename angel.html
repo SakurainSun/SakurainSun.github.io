@@ -2,105 +2,154 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>最高神介绍</title>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Great+Vibes&display=swap" rel="stylesheet">
+<title>最高神介绍 - 云梦绘里香</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 <style>
-body {margin:0;padding:0 20px;background: linear-gradient(to bottom,#f0e6f7,#fff0f5); font-family:'Georgia',serif; color:#4a2f57; line-height:1.8; overflow-x:hidden;}
-h1{font-family:'Great Vibes', cursive;font-size:3.5em;text-align:center;color:#d77fa1;text-shadow:0 0 10px #ffc0cb,0 0 20px #ffb6c1;margin:40px 0;animation:floatTitle 3s ease-in-out infinite alternate;}
-@keyframes floatTitle{0%{transform:translateY(0px);}100%{transform:translateY(-10px);}}
-details{background: rgba(255,240,245,0.6); border:1px solid #d77fa1; border-radius:15px; margin:20px 0;padding:15px; transition:0.3s; box-shadow:0 5px 15px rgba(215,127,161,0.4);}
-details[open]{background: rgba(255,240,245,0.8);}
-summary{font-family:'Dancing Script', cursive;font-size:1.6em; cursor:pointer; outline:none; color:#a92f78; text-shadow:0 0 5px #f7c5e0;}
-summary:hover{color:#ff69b4;text-shadow:0 0 10px #f7c5e0,0 0 15px #ffc0cb;}
-.popup{display:none; position:fixed; background: rgba(255,240,245,0.95); color:#4a2f57; top:50%; left:50%; transform:translate(-50%,-50%); padding:25px; border-radius:20px; box-shadow:0 0 30px rgba(215,127,161,0.5); z-index:10; max-width:80%;}
-.popup button{margin-top:15px;padding:8px 15px;border:none;background:#d77fa1;color:#fff;border-radius:15px;cursor:pointer; font-family:'Dancing Script', cursive;}
-.button-butterfly{position: relative; display: inline-block; padding: 10px 25px; margin: 15px 0; background:#ffb6c1; color:#4a2f57; font-family:'Dancing Script', cursive; font-weight:bold; text-decoration:none; border-radius:25px; box-shadow:0 5px 15px rgba(215,127,161,0.4); cursor:pointer; transition:0.3s;}
-.button-butterfly:hover{background:#ffc0cb; transform: translateY(-3px) scale(1.05); box-shadow:0 8px 20px rgba(215,127,161,0.5);}
-#musicControl{position:fixed;bottom:20px;left:20px;}
-span.magic{color:#ff69b4; font-weight:bold; text-shadow:0 0 5px #f7c5e0;}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(to bottom, #fefefe, #ffe4f5);
+}
+header {
+    text-align: center;
+    margin-top: 50px;
+}
+header h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 68px;
+    color: #e68fe6;
+    position: relative;
+    display: inline-block;
+    animation: floatTitle 4s ease-in-out infinite;
+}
+header h1::after {
+    content: '🎀';
+    position: absolute;
+    top: -25px;
+    right: -35px;
+    font-size: 40px;
+    animation: bounceTitle 2.5s infinite;
+}
+
+@keyframes floatTitle {
+    0%, 100% { transform: translateY(0);}
+    50% { transform: translateY(-12px);}
+}
+@keyframes bounceTitle {
+    0%, 100% { transform: translateY(0);}
+    50% { transform: translateY(-10px);}
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 40px;
+    gap: 20px;
+}
+.card {
+    background: rgba(255,255,255,0.85);
+    border-radius: 25px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-12px) scale(1.05);
+}
+.card h2 {
+    font-family: 'Great Vibes', cursive;
+    color: #9b59b6;
+    font-size: 28px;
+}
+.card p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+.highlight { color: #e74c3c; font-weight: bold; }
+.button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background-color: #f2b5f0;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+.button:hover {
+    background-color: #e68fe6;
+}
+#musicButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #f2b5f0;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
 </style>
 </head>
 <body>
 
-<h1>最高神 云梦绘里香</h1>
+<header>
+    <h1>最高神介绍</h1>
+</header>
 
-<details open>
-  <summary>基本信息</summary>
-  <p>
-    天穹的灵魂天使【世界圣物守护者】<br>
-    年龄：80000+<br>
-    发色：淡银白色<br>
-    衣装：白色波浪圆边礼服，锁骨下，上有花瓣点缀，颈处丝带，腿穿高筒白丝袜，手戴白丝手套，背后十二开翅膀，头顶银白光环<br>
-    武器：十二色相环圣物（★★★★★）<br>
-    种族：天使-灵魂天使<br>
-    能力：洞察人类内心灵魂颜色
-  </p>
-</details>
-
-<details>
-  <summary>灵魂色相环系统</summary>
-  <p>
-    红色 对应 热情、莽撞 烈焰之剑<br>
-    粉色 对应 甜美、软弱 樱色雪花<br>
-    橙色 对应 开朗、庸俗 光芒神珠<br>
-    黄色 对应 温暖、招摇 太阳圣座<br>
-    绿色 对应 自由、隐藏 希望之芽<br>
-    蓝色 对应 严肃、呆板 深海巨针<br>
-    紫色 对应 梦幻、高傲 璀璨星钻<br>
-    白色 对应 善良、疏离 镜面雪莲<br>
-    灰色 对应 沉稳、邋遢 魔女羽翼<br>
-    黑色 对应 优雅、执着 火山曜石<br>
-    棕色 对应 亲切、沉闷 大地核心<br>
-    银色 对应 永恒、虚无 冰封寒刃
-  </p>
-</details>
-
-<details>
-  <summary>天使随从【龍】</summary>
-  <p>
-    烈龙（火）- 红岩火山<br>
-    冰龙（水）- 残烛深海、天顶神峰、碎鸢流溪<br>
-    雷龙（电）- 异元空间<br>
-    光龙（光）- 茉莉茶圃<br>
-    地龙（土）- 地下世界、奥古梦洞<br>
-    暗龙（暗）- 黑暗峡谷<br>
-    草龙（木）- 彩虹花园<br>
-    天龙（金）- 太阳星海
-  </p>
-</details>
-
-<details>
-  <summary>萝蕾茜星球概况</summary>
-  <p>
-    西方大陆：魔法师、冒险者、天使等生物<br>
-    东方大陆：英雄战士、科学家、巫术师等<br>
-    世界圣地和传说圣物：红岩火山、彩虹花园、茉莉茶圃、太阳星海、残烛深海、星空轨道、天顶神峰、黑暗峡谷、地下世界、奥古梦洞、碎鸢流溪、异元空间
-  </p>
-</details>
-
-<button class="button-butterfly" onclick="showPopup('popupInfo')">更多信息</button>
-<div id="popupInfo" class="popup">
-  <p>云梦绘里香掌控世界圣物与灵魂色相环，洞察善恶与灵魂净洁程度。</p>
-  <button onclick="closePopup('popupInfo')">关闭</button>
+<div class="container">
+    <div class="card">
+        <h2>云梦 绘里香</h2>
+        <p><span class="highlight">至高神</span> - 天穹的灵魂天使<br>
+        世界圣物守护者，年龄：80000+<br>
+        发色：淡银白色<br>
+        衣装：白色波浪圆边礼服，高度低于锁骨，上有花瓣点缀</p>
+    </div>
+    <div class="card">
+        <h2>能力系统</h2>
+        <p>灵魂色相环系统<br>
+        洞察人类内心灵魂颜色和纯净程度<br>
+        使用十二色圣物相环判断灵魂特质</p>
+    </div>
+    <div class="card">
+        <h2>守护龙</h2>
+        <p>烈龙（火）、冰龙（水）、雷龙（电）、光龙（光）、地龙（土）、暗龙（暗）、草龙（木）、天龙（金）</p>
+    </div>
+    <div class="card">
+        <h2>圣地 & 圣物</h2>
+        <p>红岩火山：烈焰之剑<br>
+        彩虹花园：希望之芽<br>
+        茉莉茶圃：光芒神珠<br>
+        太阳星海：裁决圣座，太阳王冠</p>
+    </div>
+    <div class="card">
+        <a href="index.html" class="button">跳转至米娅档案</a>
+    </div>
 </div>
 
-<!-- 音乐控制 -->
-<audio id="bgMusic" loop>
-  <source src="Chord.mp3" type="audio/mpeg">
-  你的浏览器不支持音频播放
-</audio>
-<button id="musicControl" class="button-butterfly" onclick="toggleMusic()">播放/暂停音乐</button>
-
-<!-- 返回米娅页面 -->
-<a href="index.html" class="button-butterfly">返回米娅页面</a>
+<audio id="bgMusic" src="Chord.mp3" loop></audio>
+<div id="musicButton">🎀</div>
 
 <script>
-function showPopup(id){document.getElementById(id).style.display='block';}
-function closePopup(id){document.getElementById(id).style.display='none';}
-function toggleMusic(){
-  const music=document.getElementById('bgMusic');
-  if(music.paused){music.play();}else{music.pause();}
+const music = document.getElementById('bgMusic');
+const musicButton = document.getElementById('musicButton');
+let isPlaying = false;
+musicButton.onclick = () => {
+    if(!isPlaying){
+        music.play();
+        isPlaying = true;
+    } else {
+        music.pause();
+        isPlaying = false;
+    }
 }
 </script>
 
