@@ -1,130 +1,169 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>艾可希·米娅角色档案</title>
-    <style>
-        body {
-            font-family: "Microsoft YaHei", sans-serif;
-            background-color: #f0f8ff;
-            color: #003366;
-            margin: 0;
-            padding: 20px;
-        }
-        h1 {
-            text-align: center;
-            color: #4b0082;
-        }
-        .card {
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            padding: 20px;
-            margin: 20px auto;
-            max-width: 600px;
-        }
-        .section-title {
-            color: #6a5acd;
-            cursor: pointer;
-            margin: 10px 0;
-            transition: color 0.3s;
-        }
-        .section-title:hover {
-            color: #9370db;
-        }
-        .section-content {
-            display: none;
-            padding-left: 10px;
-            margin-bottom: 10px;
-        }
-        .section-content p {
-            margin: 5px 0;
-        }
-        .magic-effect {
-            animation: glow 1s ease-in-out infinite alternate;
-        }
-        @keyframes glow {
-            from { text-shadow: 0 0 5px #6a5acd; }
-            to { text-shadow: 0 0 20px #9370db; }
-        }
-        .button {
-            margin-top: 5px;
-            padding: 5px 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: #6a5acd;
-            color: white;
-            cursor: pointer;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>艾可希·米娅的魔法书</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "STKaiti", "KaiTi", serif;
+      background: linear-gradient(135deg, #a2d5f2, #4e7ac7);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      perspective: 1200px;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      margin-top: 30px;
+      font-size: 3em;
+      text-shadow: 0 0 15px #fff;
+    }
+
+    .book-container {
+      width: 90%;
+      max-width: 900px;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    /* 卡片翻页效果 */
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+      transform-origin: left;
+      transform-style: preserve-3d;
+      transition: transform 1s ease, box-shadow 0.5s ease;
+      cursor: pointer;
+      opacity: 0;
+    }
+
+    .card.show {
+      opacity: 1;
+      transform: rotateY(0deg);
+    }
+
+    .card.hidden {
+      transform: rotateY(-90deg);
+    }
+
+    .card:hover {
+      box-shadow: 0 0 30px rgba(255,255,255,0.4);
+    }
+
+    button {
+      background: rgba(255,255,255,0.2);
+      border: 1px solid #fff;
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+      margin-top: 10px;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    button:hover {
+      background: rgba(255,255,255,0.4);
+      transform: scale(1.05);
+    }
+
+    .magic-dot {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #fff;
+      animation: float 6s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px) translateX(0px);}
+      50% { transform: translateY(-50px) translateX(30px);}
+      100% { transform: translateY(0px) translateX(0px);}
+    }
+  </style>
 </head>
 <body>
-
-<h1>艾可希·米娅 (Eckesh Mia)</h1>
-
-<div class="card">
-    <div class="section-title" onclick="toggleSection('basic')">基本信息 ▼</div>
-    <div class="section-content" id="basic">
-        <p>性别：女</p>
-        <p>种族：苏雅人</p>
-        <p>国籍：茉莉奈神权</p>
-        <p>年龄：16</p>
+  <h1>艾可希·米娅的魔法书</h1>
+  <div class="book-container">
+    <div class="card hidden" id="card1">
+      <h2>基本信息</h2>
+      <p>性别：女 | 种族：苏雅人 | 年龄：16</p>
+      <p>国籍：茉莉奈神权</p>
+      <p>发色：纯蓝色 | 瞳色：晶蓝色 | 身高：162cm</p>
+      <p>体重：41kg | 胸围：70A | 腰围：52cm</p>
+      <button onclick="showAbilities()">显示能力介绍 ✨</button>
+      <p id="abilities" style="margin-top:10px;"></p>
     </div>
 
-    <div class="section-title" onclick="toggleSection('appearance')">外貌特征 ▼</div>
-    <div class="section-content" id="appearance">
-        <p>发色：纯蓝色，飘逸长直</p>
-        <p>瞳色：晶蓝色</p>
-        <p>身高：162cm</p>
-        <p>体重：41kg</p>
-        <p>腰围：52cm，胸围：70A</p>
-        <p>喜欢的服饰：波莱紫色圆花边礼服，苏雅莉裙</p>
+    <div class="card hidden" id="card2">
+      <h2>爱好与性格</h2>
+      <p>喜欢吃火腿面包、奶油面包、鸡蛋灌饼，喜欢喝牛奶。</p>
+      <p>性格独来独往，喜欢吟唱魔法小仪式，阳光下会打瞌睡。</p>
+      <p>朋友：铃兰·迷迭香、云杉·迷迭香、云苍·迷迭香、镜华·迷迭香</p>
     </div>
 
-    <div class="section-title" onclick="toggleMagic('ability', this)">能力 ▼</div>
-    <div class="section-content" id="ability">
-        <p>能力名称：知晓过去的能力</p>
-        <p>能力介绍：可通过物品或抽象事物追溯过去历史，记忆不会偏差</p>
-        <p>能力缺点：历史画面会清晰印入脑海，面对不适情景可能短暂失去能力</p>
-        <p>能力属性：念之力，能力性质：特殊魔法</p>
+    <div class="card hidden" id="card3">
+      <h2>魔法与历史</h2>
+      <p>米娅出生于神学世家，自小能追溯物品或抽象事物的过去。</p>
+      <p>能力：念之力（时间追溯魔法）</p>
+      <p>缺点：所追溯的历史会清晰印在脑海中，遇到不适情景可能短暂失去能力。</p>
     </div>
+  </div>
 
-    <div class="section-title" onclick="toggleSection('hobby')">爱好 ▼</div>
-    <div class="section-content" id="hobby">
-        <p>食物喜好：火腿面包、奶油面包、鸡蛋灌饼，喜欢喝牛奶</p>
-        <p>性格习惯：喜欢吟唱魔法小型仪式，独来独往，有阳光就喜欢打瞌睡</p>
-    </div>
-
-    <div class="section-title" onclick="toggleSection('relations')">人际关系 ▼</div>
-    <div class="section-content" id="relations">
-        <p><button class="button" onclick="showFriend('铃兰·迷迭香','米娅在学院认识的第一个朋友')">铃兰·迷迭香</button></p>
-        <p><button class="button" onclick="showFriend('云杉·迷迭香','和铃兰，云苍，镜华，同为迷迭香贵族成员')">云杉·迷迭香</button></p>
-        <p><button class="button" onclick="showFriend('云苍·迷迭香','和铃兰，云杉，镜华，同为迷迭香贵族成员')">云苍·迷迭香</button></p>
-        <p><button class="button" onclick="showFriend('镜华·迷迭香','和铃兰，云苍，云杉，同为迷迭香贵族成员')">镜华·迷迭香</button></p>
-        <p><button class="button" onclick="showFriend('梅园花 梦美','米娅的同学')">梅园花 梦美</button></p>
-    </div>
-</div>
-
-<script>
-    function toggleSection(id) {
-        const section = document.getElementById(id);
-        section.style.display = (section.style.display === "block") ? "none" : "block";
+  <script>
+    // 生成魔法光点
+    for(let i=0;i<30;i++){
+      let dot = document.createElement('div');
+      dot.classList.add('magic-dot');
+      dot.style.top = Math.random()*100 + 'vh';
+      dot.style.left = Math.random()*100 + 'vw';
+      dot.style.width = (Math.random()*6+4) + 'px';
+      dot.style.height = dot.style.width;
+      dot.style.animationDuration = (Math.random()*4+4) + 's';
+      document.body.appendChild(dot);
     }
 
-    function toggleMagic(id, titleElement) {
-        const section = document.getElementById(id);
-        toggleSection(id);
-        titleElement.classList.add('magic-effect');
-        setTimeout(() => {
-            titleElement.classList.remove('magic-effect');
-        }, 2000);
+    // 显示能力按钮
+    function showAbilities(){
+      const abilities = `
+        <strong>能力名称：</strong>知晓过去的能力<br>
+        <strong>介绍：</strong>通过物品或抽象事物追溯过去历史，记忆不会偏差<br>
+        <strong>属性：</strong>念之力，特殊魔法<br>
+        <strong>缺点：</strong>历史会清晰印在脑海中，遇不适情景可能短暂失效
+      `;
+      document.getElementById('abilities').innerHTML = abilities;
     }
 
-    function showFriend(name, info) {
-        alert(name + "：\n" + info);
-    }
-</script>
+    // 翻书效果：按顺序显示卡片
+    const cards = document.querySelectorAll('.card');
+    let index = 0;
 
+    function showNextCard() {
+      if(index < cards.length){
+        cards[index].classList.remove('hidden');
+        cards[index].classList.add('show');
+        index++;
+        setTimeout(showNextCard, 600); // 每600ms翻一页
+      }
+    }
+
+    window.onload = () => {
+      showNextCard();
+    };
+  </script>
 </body>
 </html>
