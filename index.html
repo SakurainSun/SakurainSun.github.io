@@ -1,227 +1,122 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
 <meta charset="UTF-8">
-<title>艾可希·米娅 - 魔法档案</title>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>艾可希·米娅档案</title>
 <style>
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(to bottom, #fdf6fb, #e0c3fc);
-    overflow-x: hidden;
-    position: relative;
-}
-header {
-    text-align: center;
-    margin-top: 40px;
-}
-header h1 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 72px;
-    color: #9b59b6;
-    position: relative;
-    display: inline-block;
-    animation: floatTitle 3s ease-in-out infinite;
-}
-header h1::after {
-    content: '🎀';
-    position: absolute;
-    top: -25px;
-    right: -40px;
-    font-size: 36px;
-    animation: bounceTitle 2s infinite;
-}
-@keyframes floatTitle {
-    0%,100% { transform: translateY(0);}
-    50% { transform: translateY(-12px);}
-}
-@keyframes bounceTitle {
-    0%,100% { transform: translateY(0);}
-    50% { transform: translateY(-10px);}
-}
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&display=swap');
 
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 40px;
-    gap: 20px;
-}
-.card {
-    background: rgba(255,255,255,0.85);
-    border-radius: 25px;
-    padding: 20px;
-    width: 300px;
-    box-shadow: 0 15px 25px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease;
-    position: relative;
-    opacity: 0;
-    animation: fadeIn 1s forwards;
-}
-.card:hover {
-    transform: translateY(-12px) scale(1.05);
-}
-.card h2 {
-    font-family: 'Great Vibes', cursive;
-    color: #8e44ad;
-    font-size: 28px;
-}
-.card p {
-    font-size: 14px;
-    line-height: 1.5;
-}
-.highlight { color: #e74c3c; font-weight: bold; }
-.button {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 8px 16px;
-    border-radius: 20px;
-    background-color: #d39ff2;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background 0.3s;
-}
-.button:hover { background-color: #b07de6; }
+body { margin:0; padding:0; background: linear-gradient(to bottom, #fbeaff, #e0f0ff); font-family: 'Parisienne', cursive; overflow-x:hidden; }
+.particle { position:absolute; border-radius:50%; width:8px; height:8px; background:rgba(255,255,255,0.9); animation:float 5s linear infinite; }
+@keyframes float { 0% {transform:translateY(0);} 100%{transform:translateY(-600px);} }
 
-#musicButton {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #f2b5f0;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    text-align: center;
-    line-height: 60px;
-    font-size: 24px;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
+header { text-align:center; margin-top:20px; }
+header h1 { font-family:'Great Vibes', cursive; font-size:72px; color:#ff8cd6; animation:fadeInTitle 2s ease forwards; position:relative; }
+header h1::after { content:'🎀'; position:absolute; top:-20px; right:-30px; font-size:40px; animation:float 4s linear infinite alternate; }
+@keyframes fadeInTitle { 0%{opacity:0;} 100%{opacity:1;} }
 
-/* 弹出小窗样式 */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 10;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    background: rgba(255,255,255,0.95);
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-}
-.modal img {
-    width: 100%;
-    border-radius: 15px;
-}
-.modal-close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 20px;
-    cursor: pointer;
-}
+.container { display:flex; flex-wrap: wrap; justify-content:center; margin:30px 10px; gap:20px; }
+.card { background: rgba(255,255,255,0.85); border-radius:20px; padding:15px; box-shadow:0 4px 15px rgba(0,0,0,0.2); width:100%; max-width:300px; transition:transform 0.3s; }
+.card:hover { transform:translateY(-10px); }
+.card h2 { color:#ff6fd8; font-size:28px; margin-bottom:10px; }
+.card p { color:#333; line-height:1.4em; font-size:14px; }
+.special { color:#6fa8ff; font-weight:bold; }
 
-/* 粒子特效 */
-.particle {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background: rgba(255,255,255,0.8);
-    border-radius: 50%;
-    animation: particleMove 5s infinite;
-}
-@keyframes particleMove {
-    0% { transform: translateY(0) translateX(0);}
-    50% { transform: translateY(-200px) translateX(50px);}
-    100% { transform: translateY(0) translateX(0);}
-}
+button { position:fixed; right:20px; bottom:20px; background:#ffb6f2; border:none; padding:15px; border-radius:50%; font-size:20px; cursor:pointer; box-shadow:0 3px 8px rgba(0,0,0,0.3); }
+button:hover { background:#ff8cd6; }
 
-@keyframes fadeIn { 0% {opacity:0} 100% {opacity:1} }
+/* 跳转按钮 */
+.jumpBtn { position:fixed; left:20px; bottom:20px; background:#ffe0f7; border:none; padding:12px 18px; border-radius:25px; font-size:16px; cursor:pointer; box-shadow:0 3px 8px rgba(0,0,0,0.3); }
+.jumpBtn:hover { background:#ffb6f2; }
+
+.modal { display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:rgba(255,255,255,0.95); padding:20px; border-radius:25px; box-shadow:0 5px 20px rgba(0,0,0,0.4); z-index:10; max-width:90%; }
+.modal img { width:100px; border-radius:15px; }
+.modal h3 { color:#ff6fd8; }
+.modal p { font-size:14px; }
+.modalClose { position:absolute; top:10px; right:15px; cursor:pointer; font-weight:bold; }
+
+@media screen and (max-width:480px){
+  header h1 { font-size:48px; }
+  .card h2 { font-size:22px; }
+  .card p { font-size:12px; }
+  button { width:50px; height:50px; font-size:18px; padding:10px; }
+  .jumpBtn { padding:10px 14px; font-size:14px; }
+}
 </style>
 </head>
 <body>
 
+<div id="particles"></div>
+
 <header>
-    <h1>艾可希·米娅</h1>
+<h1>艾可希·米娅</h1>
 </header>
 
-<!-- 粒子特效 -->
-<div class="particle" style="top:80px; left:50px;"></div>
-<div class="particle" style="top:120px; left:200px;"></div>
-<div class="particle" style="top:50px; left:300px;"></div>
-
 <div class="container">
-    <div class="card" style="width:320px;">
-        <h2>基本信息</h2>
-        <p>性别：<span class="highlight">女</span><br>
-        种族：苏雅人<br>
-        国籍：茉莉奈神权<br>
-        年龄：16</p>
-    </div>
-    <div class="card" style="width:260px;">
-        <h2>外貌特征</h2>
-        <p>发色：纯蓝色<br>
-        瞳色：晶蓝色<br>
-        身高：162cm<br>
-        体重：41kg<br>
-        喜欢服饰：波莱紫色圆花边礼服，苏雅莉裙</p>
-        <button class="button" onclick="openModal()">查看立绘</button>
-    </div>
-    <div class="card">
-        <h2>能力</h2>
-        <p>名称：知晓过去的能力<br>
-        属性：念之力<br>
-        性质：特殊魔法<br>
-        缺点：面对不适情景可能短暂失去记忆能力</p>
-    </div>
-    <div class="card">
-        <h2>爱好</h2>
-        <p>火腿面包、奶油面包、鸡蛋灌饼、牛奶<br>
-        性格：独来独往，喜欢吟唱魔法仪式</p>
-    </div>
-    <div class="card">
-        <h2>人际关系</h2>
-        <p>铃兰·迷迭香、云杉·迷迭香、云苍·迷迭香、镜华·迷迭香<br>
-        同学：梅园花 梦美</p>
-    </div>
-    <div class="card">
-        <h2>学院经历</h2>
-        <p>毕业于永蓝银川魔法培训所<br>
-        初阶魔法师，特殊能力觉醒后获得高级图书馆门禁卡</p>
-    </div>
-    <div class="card">
-        <a href="angel.html" class="button">跳转至至高神介绍</a>
-    </div>
+  <div class="card">
+    <h2>基本信息</h2>
+    <p><span class="special">性别：</span>女</p>
+    <p><span class="special">种族：</span>苏雅人</p>
+    <p><span class="special">年龄：</span>16</p>
+  </div>
+
+  <div class="card">
+    <h2>能力</h2>
+    <p><span class="special">能力名称：</span>知晓过去的能力</p>
+    <p><span class="special">能力介绍：</span>通过物品或抽象事物追溯过去，记忆精准，神赐能力。</p>
+    <p><span class="special">缺点：</span>历史记忆会清晰印入脑海，遇特殊情景可能暂失能力。</p>
+  </div>
+
+  <div class="card">
+    <h2>爱好 & 性格</h2>
+    <p>喜欢吟唱魔法小型仪式，<span class="special">独来独往</span>，有阳光就打瞌睡。</p>
+    <p>食物：火腿面包、奶油面包、鸡蛋灌饼，喜欢喝牛奶。</p>
+  </div>
+
+  <div class="card" onclick="openModal()">
+    <h2>好友 & 学院</h2>
+    <p>铃兰·迷迭香，云杉·迷迭香，云苍·迷迭香，镜华·迷迭香</p>
+    <p>永蓝银川魔法培训所毕业，初阶魔法师。</p>
+  </div>
 </div>
 
-<!-- 弹出窗口 -->
 <div class="modal" id="modal">
-    <span class="modal-close" onclick="closeModal()">✖</span>
-    <img src="mia_avatar.png" alt="米娅立绘">
+  <span class="modalClose" onclick="closeModal()">×</span>
+  <img src="mia-avatar.png" alt="艾可希·米娅">
+  <h3>艾可希·米娅</h3>
+  <p>出生于神学世家，拥有神赐时间追溯能力。</p>
 </div>
 
-<audio id="bgMusic" src="Chord.mp3" loop></audio>
-<div id="musicButton">🎀</div>
+<!-- 音乐 -->
+<audio id="bgm" src="Chord.mp3" loop></audio>
+<button onclick="toggleMusic()" id="musicButton">▶</button>
+
+<!-- 跳转到云梦绘里香 -->
+<button class="jumpBtn" onclick="location.href='angel.html'">去最高神介绍</button>
 
 <script>
-/* 音乐控制 */
-const music = document.getElementById('bgMusic');
-const musicButton = document.getElementById('musicButton');
-let isPlaying = false;
-musicButton.onclick = () => {
-    if(!isPlaying){ music.play(); isPlaying=true; }
-    else { music.pause(); isPlaying=false; }
+// 粒子效果
+const particleCount = 30;
+const particles = document.getElementById('particles');
+for(let i=0;i<particleCount;i++){
+  let div = document.createElement('div');
+  div.className='particle';
+  div.style.left=Math.random()*100+'%';
+  div.style.top=Math.random()*100+'%';
+  particles.appendChild(div);
 }
 
-/* 弹窗控制 */
+// 弹窗
 function openModal(){ document.getElementById('modal').style.display='block'; }
 function closeModal(){ document.getElementById('modal').style.display='none'; }
+
+// 音乐
+const bgm = document.getElementById('bgm');
+function toggleMusic(){
+  if(bgm.paused){ bgm.play(); document.getElementById('musicButton').innerText='⏸'; }
+  else{ bgm.pause(); document.getElementById('musicButton').innerText='▶'; }
+}
 </script>
 
 </body>
