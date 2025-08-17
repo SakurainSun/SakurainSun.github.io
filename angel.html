@@ -1,176 +1,117 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
 <meta charset="UTF-8">
-<title>云梦绘里香 - 至高神介绍</title>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>最高神介绍</title>
 <style>
-body {
-    margin:0; padding:0;
-    font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(to bottom, #fffaf0, #e8f0ff);
-    overflow-x: hidden;
-    position: relative;
-}
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&display=swap');
 
-/* 标题艺术字与光环蝴蝶结 */
-header { text-align:center; margin-top:50px; }
-header h1 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 72px;
-    color: #5dade2;
-    position: relative;
-    display: inline-block;
-    animation: floatTitle 3s ease-in-out infinite;
-}
-header h1::after {
-    content: '🎀';
-    position: absolute;
-    top: -30px;
-    right: -45px;
-    font-size: 36px;
-    animation: bounceTitle 2s infinite;
-}
-@keyframes floatTitle {
-    0%,100% { transform: translateY(0);}
-    50% { transform: translateY(-15px);}
-}
-@keyframes bounceTitle {
-    0%,100% { transform: translateY(0);}
-    50% { transform: translateY(-12px);}
-}
+body { margin:0; padding:0; background: linear-gradient(to bottom, #fff8f0, #e0f7ff); font-family: 'Parisienne', cursive; overflow-x:hidden; }
+.particle { position:absolute; border-radius:50%; width:10px; height:10px; background:rgba(255,255,255,0.95); animation:float 6s linear infinite; }
+@keyframes float { 0% {transform:translateY(0);} 100%{transform:translateY(-600px);} }
 
-/* 卡片风格 */
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 50px 30px;
-    gap: 20px;
+header { text-align:center; margin-top:20px; }
+header h1 { font-family:'Great Vibes', cursive; font-size:72px; color:#7edfff; animation:fadeInTitle 2s ease forwards; position:relative; }
+header h1::after { content:'🎀'; position:absolute; top:-20px; right:-30px; font-size:40px; animation:float 4s linear infinite alternate; }
+@keyframes fadeInTitle { 0%{opacity:0;} 100%{opacity:1;} }
+
+.container { display:flex; flex-wrap: wrap; justify-content:center; margin:30px 10px; gap:20px; }
+.card { background: rgba(255,255,255,0.85); border-radius:20px; padding:15px; box-shadow:0 4px 15px rgba(0,0,0,0.2); width:100%; max-width:300px; transition:transform 0.3s; }
+.card:hover { transform:translateY(-10px); }
+.card h2 { color:#5dd1ff; font-size:28px; margin-bottom:10px; }
+.card p { color:#333; line-height:1.4em; font-size:14px; }
+.special { color:#ff8cd6; font-weight:bold; }
+
+button { position:fixed; right:20px; bottom:20px; background:#b6f2ff; border:none; padding:15px; border-radius:50%; font-size:20px; cursor:pointer; box-shadow:0 3px 8px rgba(0,0,0,0.3); }
+button:hover { background:#7edfff; }
+
+.jumpBtn { position:fixed; left:20px; bottom:20px; background:#d0f7ff; border:none; padding:12px 18px; border-radius:25px; font-size:16px; cursor:pointer; box-shadow:0 3px 8px rgba(0,0,0,0.3); }
+.jumpBtn:hover { background:#b6f2ff; }
+
+.modal { display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:rgba(255,255,255,0.95); padding:20px; border-radius:25px; box-shadow:0 5px 20px rgba(0,0,0,0.4); z-index:10; max-width:90%; }
+.modal img { width:120px; border-radius:15px; }
+.modal h3 { color:#5dd1ff; }
+.modal p { font-size:14px; }
+.modalClose { position:absolute; top:10px; right:15px; cursor:pointer; font-weight:bold; }
+
+@media screen and (max-width:480px){
+  header h1 { font-size:48px; }
+  .card h2 { font-size:22px; }
+  .card p { font-size:12px; }
+  button { width:50px; height:50px; font-size:18px; padding:10px; }
+  .jumpBtn { padding:10px 14px; font-size:14px; }
 }
-.card {
-    background: rgba(255,255,255,0.9);
-    border-radius: 25px;
-    padding: 20px;
-    width: 280px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease;
-    position: relative;
-    opacity: 0;
-    animation: fadeIn 1.2s forwards;
-}
-.card:hover { transform: translateY(-12px) scale(1.05);}
-.card h2 { font-family: 'Great Vibes', cursive; font-size: 28px; color: #2980b9;}
-.card p { font-size: 14px; line-height:1.5;}
-.highlight { color:#e67e22; font-weight:bold; }
-
-.button {
-    display:inline-block; margin-top:10px;
-    padding:8px 16px; border-radius:20px;
-    background-color:#a3d5ff; color:white;
-    text-decoration:none; font-weight:bold;
-    transition: background 0.3s;
-}
-.button:hover { background-color:#5dade2; }
-
-/* 音乐按钮右下角 */
-#musicButton {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #cce6ff;
-    border-radius: 50%;
-    width: 60px; height: 60px;
-    text-align: center; line-height:60px;
-    font-size:24px; cursor:pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-/* 弹出小窗 */
-.modal { display:none; position:fixed; z-index:10; left:50%; top:50%;
-    transform: translate(-50%, -50%);
-    width:420px; background: rgba(255,255,255,0.95);
-    border-radius:20px; padding:20px;
-    box-shadow:0 15px 35px rgba(0,0,0,0.4);}
-.modal img { width:100%; border-radius:15px; }
-.modal-close { position:absolute; top:10px; right:15px; font-size:20px; cursor:pointer; }
-
-/* 粒子特效 */
-.particle { position:absolute; width:10px; height:10px; background: rgba(255,255,255,0.9); border-radius:50%; animation: particleMove 6s infinite;}
-@keyframes particleMove { 0% { transform: translateY(0) translateX(0);} 50% { transform: translateY(-220px) translateX(60px);} 100% { transform: translateY(0) translateX(0);} }
-
-@keyframes fadeIn { 0% {opacity:0} 100% {opacity:1} }
-
 </style>
 </head>
 <body>
 
+<div id="particles"></div>
+
 <header>
-    <h1>云梦 绘里香</h1>
+<h1>最高神介绍</h1>
 </header>
 
-<!-- 光点粒子 -->
-<div class="particle" style="top:100px; left:50px;"></div>
-<div class="particle" style="top:140px; left:250px;"></div>
-<div class="particle" style="top:80px; left:350px;"></div>
-
 <div class="container">
-    <div class="card" style="width:320px;">
-        <h2>基本信息</h2>
-        <p>种族：<span class="highlight">天使-灵魂天使</span><br>
-        年龄：80000+<br>
-        衣装：白色波浪圆边礼服，白色十二开翅膀，银白光环</p>
-    </div>
-    <div class="card">
-        <h2>能力与武器</h2>
-        <p>能力：洞察人类内心灵魂颜色<br>
-        系统：灵魂色相环系统<br>
-        武器：十二色相环圣物（★★★★★）</p>
-    </div>
-    <div class="card">
-        <h2>加护与圣物</h2>
-        <p>红岩火山——烈焰之剑<br>
-        彩虹花园——希望之芽<br>
-        茉莉茶圃——光芒神珠<br>
-        太阳星海——裁决圣座 & 太阳王冠</p>
-    </div>
-    <div class="card" style="width:260px;">
-        <h2>天使随从</h2>
-        <p>烈龙、冰龙、雷龙、光龙、地龙、暗龙、草龙、天龙<br>
-        属性、圣物各不相同</p>
-        <button class="button" onclick="openModal()">查看立绘</button>
-    </div>
-    <div class="card">
-        <h2>世界概况</h2>
-        <p>萝蕾茜星球，西方魔法大陆与东方科技大陆共存，众生繁衍、文明发展、英雄与圣物并存</p>
-    </div>
-    <div class="card">
-        <a href="index.html" class="button">返回米娅页面</a>
-    </div>
+  <div class="card">
+    <h2>基本信息</h2>
+    <p><span class="special">名称：</span>云梦 绘里香</p>
+    <p><span class="special">别名：</span>天穹的灵魂天使</p>
+    <p><span class="special">年龄：</span>80000+</p>
+  </div>
+
+  <div class="card">
+    <h2>能力系统</h2>
+    <p><span class="special">能力：</span>洞察人类内心灵魂颜色</p>
+    <p><span class="special">系统：</span>灵魂色相环系统</p>
+  </div>
+
+  <div class="card" onclick="openModal()">
+    <h2>圣物与随从</h2>
+    <p>烈龙、冰龙、雷龙、光龙、地龙、暗龙、草龙、天龙</p>
+  </div>
+
+  <div class="card">
+    <h2>世界观</h2>
+    <p>萝蕾茜星球，奇幻西方大陆与科技东方大陆并存。</p>
+  </div>
 </div>
 
-<!-- 弹出窗口 -->
 <div class="modal" id="modal">
-    <span class="modal-close" onclick="closeModal()">✖</span>
-    <img src="angel_avatar.png" alt="绘里香立绘">
+  <span class="modalClose" onclick="closeModal()">×</span>
+  <img src="angel-avatar.png" alt="云梦绘里香">
+  <h3>云梦 绘里香</h3>
+  <p>至高神，洞察人心，掌控圣物，赋予加护。</p>
 </div>
 
-<audio id="bgMusic" src="Chord.mp3" loop></audio>
-<div id="musicButton">🎀</div>
+<audio id="bgm" src="Chord.mp3" loop></audio>
+<button onclick="toggleMusic()" id="musicButton">▶</button>
+
+<!-- 跳转到米娅 -->
+<button class="jumpBtn" onclick="location.href='index.html'">去艾可希·米娅档案</button>
 
 <script>
-/* 音乐控制 */
-const music = document.getElementById('bgMusic');
-const musicButton = document.getElementById('musicButton');
-let isPlaying = false;
-musicButton.onclick = () => {
-    if(!isPlaying){ music.play(); isPlaying=true; }
-    else { music.pause(); isPlaying=false; }
+// 粒子
+const particleCount = 40;
+const particles = document.getElementById('particles');
+for(let i=0;i<particleCount;i++){
+  let div = document.createElement('div');
+  div.className='particle';
+  div.style.left=Math.random()*100+'%';
+  div.style.top=Math.random()*100+'%';
+  particles.appendChild(div);
 }
 
-/* 弹窗控制 */
+// 弹窗
 function openModal(){ document.getElementById('modal').style.display='block'; }
 function closeModal(){ document.getElementById('modal').style.display='none'; }
+
+// 音乐
+const bgm = document.getElementById('bgm');
+function toggleMusic(){
+  if(bgm.paused){ bgm.play(); document.getElementById('musicButton').innerText='⏸'; }
+  else{ bgm.pause(); document.getElementById('musicButton').innerText='▶'; }
+}
 </script>
 
 </body>
