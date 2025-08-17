@@ -1,168 +1,145 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>艾可希·米娅的魔法世界</title>
-  <style>
-    body {
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #1a1a2e;
-      color: #f0f0f0;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-      position: relative;
-    }
-    header {
-      background-color: #3a3a6e;
-      padding: 20px;
-      text-align: center;
-      font-size: 2em;
-      font-weight: bold;
-      color: #fff;
-      position: relative;
-      z-index: 2;
-    }
-    #mia-intro {
-      padding: 20px;
-      background-color: rgba(46,46,80,0.9);
-      margin: 20px;
-      border-radius: 10px;
-      position: relative;
-      z-index: 2;
-    }
-    #mia-intro h2 {
-      color: #a0c4ff;
-    }
-    #mia-intro p {
-      margin: 5px 0;
-    }
-    #game-section {
-      padding: 20px;
-      margin: 20px;
-      background-color: rgba(46,46,80,0.9);
-      border-radius: 10px;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
-    #score {
-      font-size: 1.2em;
-      margin-bottom: 10px;
-    }
-    .dot, .magic-dot {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      position: absolute;
-      box-shadow: 0 0 10px #ff6b6b;
-      transition: transform 0.2s;
-    }
-    .dot {
-      background-color: #ff6b6b;
-      cursor: pointer;
-    }
-    .dot:hover {
-      transform: scale(1.5);
-    }
-    .magic-dot {
-      background-color: #a0c4ff;
-      opacity: 0.7;
-      animation: float 6s infinite;
-      z-index: 1;
-    }
-    @keyframes float {
-      0% { transform: translateY(0) translateX(0); }
-      50% { transform: translateY(-100px) translateX(50px); }
-      100% { transform: translateY(0) translateX(0); }
-    }
-    audio {
-      display: none;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>艾可希·米娅介绍</title>
+<style>
+body {
+  background: linear-gradient(to bottom, #0d0d2b, #1a1a40);
+  color: #fff;
+  font-family: 'Georgia', serif;
+  line-height: 1.8;
+  padding: 20px;
+  margin: 0;
+}
+h1 {
+  text-align: center;
+  font-size: 3em;
+  color: #a9f1ff;
+  text-shadow: 0 0 10px #a9f1ff, 0 0 20px #6ee3ff;
+  margin-bottom: 40px;
+}
+details {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid #6ee3ff;
+  border-radius: 10px;
+  margin: 15px 0;
+  padding: 15px;
+  transition: 0.3s;
+}
+details[open] {background: rgba(255,255,255,0.1); box-shadow: 0 0 15px #6ee3ff;}
+summary {
+  font-size: 1.5em;
+  cursor: pointer;
+  outline: none;
+  color: #a9f1ff;
+  text-shadow: 0 0 5px #6ee3ff;
+}
+summary:hover {color:#fff;text-shadow:0 0 15px #6ee3ff,0 0 25px #a9f1ff;}
+.popup {
+  display: none;
+  position: fixed;
+  background: rgba(0,0,0,0.85);
+  color: #fff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 25px;
+  border-radius: 15px;
+  z-index: 10;
+  max-width: 80%;
+}
+.popup button {margin-top:15px;padding:8px 15px;border:none;background:#6ee3ff;color:#000;border-radius:8px;cursor:pointer;}
+#musicControl {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 10px 15px;
+  background: #6ee3ff;
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.jump-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #a9f1ff;
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 12px;
+  margin-top: 15px;
+}
+</style>
 </head>
 <body>
-  <header>艾可希·米娅的魔法世界</header>
 
-  <div id="mia-intro">
-    <h2>基本信息</h2>
-    <p>性别：女</p>
-    <p>种族：苏雅人</p>
-    <p>国籍：茉莉奈神权</p>
-    <p>年龄：16</p>
+<h1>艾可希·米娅介绍</h1>
 
-    <h2>外貌特征</h2>
-    <p>发色：纯蓝色，飘逸长直</p>
-    <p>瞳色：晶蓝色</p>
-    <p>身高：162cm，体重：41kg</p>
-    <p>喜欢的服饰：波莱紫色圆花边礼服，苏雅莉裙</p>
+<details open>
+  <summary>基本信息</summary>
+  <p>
+    性别：女<br>
+    种族：苏雅人<br>
+    国籍：茉莉奈神权<br>
+    年龄：16<br>
+    发色：纯蓝色，飘逸长直<br>
+    瞳色：晶蓝色<br>
+    身高：162cm<br>
+    体重：41kg
+  </p>
+</details>
 
-    <h2>能力</h2>
-    <p>能力名称：知晓过去的能力</p>
-    <p>能力介绍：通过物品或抽象事物追溯过去的历史，记忆不偏差，神赐能力。</p>
-    <p>能力缺点：面对不适情景时会短暂失忆，忘掉刚追溯的一切。</p>
+<details>
+  <summary>能力介绍</summary>
+  <p>
+    能力名称：知晓过去的能力<br>
+    能力介绍：通过物品或抽象事物追溯过去历史，记忆精准不偏差<br>
+    能力缺点：所重现历史会清晰印在脑海，面对不适情景会短暂失去记忆能力<br>
+    能力属性：念之力<br>
+    能力性质：特殊魔法
+  </p>
+</details>
 
-    <h2>爱好与性格</h2>
-    <p>喜欢吟唱魔法仪式，独来独往。</p>
-    <p>有阳光就喜欢打瞌睡，无聊就打瞌睡……</p>
-    <p>喜欢吃火腿面包、奶油面包、鸡蛋灌饼，喜欢喝牛奶。</p>
-  </div>
+<details>
+  <summary>爱好与性格</summary>
+  <p>
+    喜欢吟唱魔法小型仪式<br>
+    性格独来独往<br>
+    阳光下喜欢打瞌睡<br>
+    食物：火腿面包、奶油面包、鸡蛋灌饼<br>
+    饮品：牛奶
+  </p>
+</details>
 
-  <div id="game-section">
-    <h2>魔法光点小游戏</h2>
-    <div id="score">分数：0</div>
-  </div>
+<!-- 弹窗 -->
+<button onclick="showPopup('popupInfo')">更多学院信息</button>
+<div id="popupInfo" class="popup">
+  <p>艾可希毕业于永蓝银川魔法培训所，拥有高级图书馆门禁卡...</p>
+  <button onclick="closePopup('popupInfo')">关闭</button>
+</div>
 
-  <!-- 背景音乐，可替换为你自己的音频文件 -->
-  <audio autoplay loop>
-    <source src="Chord.mp3" type="audio/mpeg">
-  </audio>
+<!-- 背景音乐 -->
+<audio id="bgMusic" loop>
+  <source src="Chord.mp3" type="audio/mpeg">
+  你的浏览器不支持音频播放
+</audio>
+<button id="musicControl" onclick="toggleMusic()">播放/暂停音乐</button>
 
-  <script>
-    // 游戏逻辑
-    let score = 0;
+<!-- 跳转到最高神页面 -->
+<a href="angel.html" class="jump-button">查看最高神介绍</a>
 
-    function createDot() {
-      const dot = document.createElement("div");
-      dot.classList.add("dot");
+<script>
+function showPopup(id){document.getElementById(id).style.display='block';}
+function closePopup(id){document.getElementById(id).style.display='none';}
+function toggleMusic(){
+  const music=document.getElementById('bgMusic');
+  if(music.paused){music.play();}else{music.pause();}
+}
+</script>
 
-      const x = Math.random() * (window.innerWidth - 30);
-      const y = Math.random() * (window.innerHeight - 30);
-      dot.style.left = x + "px";
-      dot.style.top = y + "px";
-
-      dot.onclick = function() {
-        score++;
-        document.getElementById("score").innerText = "分数：" + score;
-        dot.remove();
-      };
-
-      document.body.appendChild(dot);
-
-      setTimeout(() => {
-        if (dot.parentNode) dot.remove();
-      }, 3000);
-    }
-
-    setInterval(createDot, 1000);
-
-    // 魔法光环动画
-    function createMagicDot() {
-      const dot = document.createElement("div");
-      dot.classList.add("magic-dot");
-
-      const x = Math.random() * window.innerWidth;
-      const y = Math.random() * window.innerHeight;
-      dot.style.left = x + "px";
-      dot.style.top = y + "px";
-
-      document.body.appendChild(dot);
-
-      setTimeout(() => dot.remove(), 8000);
-    }
-
-    setInterval(createMagicDot, 500);
-  </script>
 </body>
 </html>
