@@ -2,203 +2,173 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>艾可希·米娅介绍</title>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Great+Vibes&display=swap" rel="stylesheet">
+<title>艾可希·米娅 - 魔法档案</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 <style>
-/* 基础背景与字体 */
 body {
-  margin:0;
-  padding:0 20px;
-  background: linear-gradient(to bottom, #f0e6f7, #fff0f5);
-  font-family: 'Georgia', serif;
-  color: #4a2f57;
-  line-height: 1.8;
-  overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(to bottom, #fdf6fb, #e0c3fc);
+    overflow-x: hidden;
+}
+header {
+    text-align: center;
+    margin-top: 40px;
+}
+header h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 64px;
+    color: #9b59b6;
+    position: relative;
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+}
+header h1::after {
+    content: '🎀';
+    position: absolute;
+    top: -20px;
+    right: -30px;
+    font-size: 36px;
+    animation: bounce 2s infinite;
 }
 
-/* 主标题 */
-h1 {
-  font-family: 'Great Vibes', cursive;
-  font-size: 3.5em;
-  text-align: center;
-  color: #d77fa1;
-  text-shadow: 0 0 10px #ffc0cb, 0 0 20px #ffb6c1;
-  margin: 40px 0;
-  animation: floatTitle 3s ease-in-out infinite alternate;
+@keyframes float {
+    0%, 100% { transform: translateY(0);}
+    50% { transform: translateY(-10px);}
 }
 
-/* 动画标题漂浮 */
-@keyframes floatTitle {
-  0% { transform: translateY(0px); }
-  100% { transform: translateY(-10px); }
+@keyframes bounce {
+    0%, 100% { transform: translateY(0);}
+    50% { transform: translateY(-10px);}
 }
 
-/* 折叠内容 */
-details {
-  background: rgba(255,240,245,0.6);
-  border: 1px solid #d77fa1;
-  border-radius: 15px;
-  margin: 20px 0;
-  padding: 15px;
-  transition: 0.3s;
-  box-shadow: 0 5px 15px rgba(215,127,161,0.4);
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 40px;
+    gap: 20px;
 }
-details[open] {background: rgba(255,240,245,0.8);}
-
-/* 折叠标题 */
-summary {
-  font-family: 'Dancing Script', cursive;
-  font-size: 1.6em;
-  cursor: pointer;
-  outline: none;
-  color: #a92f78;
-  text-shadow: 0 0 5px #f7c5e0;
+.card {
+    background: rgba(255,255,255,0.8);
+    border-radius: 20px;
+    padding: 20px;
+    width: 280px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
 }
-summary:hover {color:#ff69b4; text-shadow:0 0 10px #f7c5e0,0 0 15px #ffc0cb;}
-
-/* 弹窗 */
-.popup {
-  display: none;
-  position: fixed;
-  background: rgba(255,240,245,0.95);
-  color: #4a2f57;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  padding: 25px;
-  border-radius: 20px;
-  box-shadow: 0 0 30px rgba(215,127,161,0.5);
-  z-index: 10;
-  max-width: 80%;
+.card:hover {
+    transform: translateY(-10px) scale(1.05);
 }
-.popup button {
-  margin-top:15px;
-  padding:8px 15px;
-  border:none;
-  background:#d77fa1;
-  color:#fff;
-  border-radius:15px;
-  cursor:pointer;
-  font-family: 'Dancing Script', cursive;
+.card h2 {
+    font-family: 'Great Vibes', cursive;
+    color: #8e44ad;
+    font-size: 28px;
+}
+.card p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+.highlight {
+    color: #e74c3c;
+    font-weight: bold;
+}
+.button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background-color: #d39ff2;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+.button:hover {
+    background-color: #b07de6;
 }
 
-/* 音乐按钮和跳转按钮 */
-.button-butterfly {
-  position: relative;
-  display: inline-block;
-  padding: 10px 25px;
-  margin: 15px 0;
-  background: #ffb6c1;
-  color: #4a2f57;
-  font-family: 'Dancing Script', cursive;
-  font-weight: bold;
-  text-decoration: none;
-  border-radius: 25px;
-  box-shadow: 0 5px 15px rgba(215,127,161,0.4);
-  cursor: pointer;
-  transition: 0.3s;
+#musicButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #f2b5f0;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
-.button-butterfly:hover {
-  background: #ffc0cb;
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 20px rgba(215,127,161,0.5);
-}
-
-/* 音乐控制按钮固定位置 */
-#musicControl {position: fixed; bottom: 20px; left: 20px;}
-
-/* 小动画文字 */
-span.magic {color:#ff69b4; font-weight:bold; text-shadow:0 0 5px #f7c5e0;}
 </style>
 </head>
 <body>
 
-<h1>艾可希·米娅</h1>
+<header>
+    <h1>艾可希·米娅</h1>
+</header>
 
-<details open>
-  <summary>基本信息</summary>
-  <p>
-    性别：<span class="magic">女</span><br>
-    种族：<span class="magic">苏雅人</span><br>
-    国籍：茉莉奈神权<br>
-    年龄：16<br>
-    发色：纯蓝色，飘逸长直<br>
-    瞳色：晶蓝色<br>
-    身高：162cm<br>
-    体重：41kg<br>
-    腰围：52cm<br>
-    胸围：70A<br>
-    喜欢的服饰：波莱紫色圆花边礼服，苏雅莉裙
-  </p>
-</details>
-
-<details>
-  <summary>能力介绍</summary>
-  <p>
-    能力名称：<span class="magic">知晓过去的能力</span><br>
-    能力介绍：通过物品或抽象事物追溯过去历史，记忆精准不偏差<br>
-    能力缺点：历史记忆会清晰印在脑海，遇不适情景会短暂失忆<br>
-    能力属性：念之力<br>
-    能力性质：特殊魔法
-  </p>
-</details>
-
-<details>
-  <summary>爱好与性格</summary>
-  <p>
-    喜欢吟唱魔法小型仪式<br>
-    性格独来独往<br>
-    阳光下喜欢打瞌睡<br>
-    食物：火腿面包、奶油面包、鸡蛋灌饼<br>
-    饮品：牛奶
-  </p>
-</details>
-
-<details>
-  <summary>人际关系与同学</summary>
-  <p>
-    铃兰·迷迭香（LiLan Milidey）<br>
-    云杉·迷迭香（Spruce Milidey）<br>
-    云苍·迷迭香（Yuncang Milidey）<br>
-    镜华·迷迭香（Mirrors Milidey）<br>
-    梅园花 梦美
-  </p>
-</details>
-
-<details>
-  <summary>其他背景</summary>
-  <p>
-    毕业于永蓝银川魔法培训所，初阶魔法师。<br>
-    家庭背景优越，自幼被送去草药治疗部学习。<br>
-    特殊能力觉醒后得到高级图书馆门禁卡。<br>
-    与姐妹自幼接触，结下深厚友谊。
-  </p>
-</details>
-
-<!-- 弹窗 -->
-<button class="button-butterfly" onclick="showPopup('popupInfo')">更多学院信息</button>
-<div id="popupInfo" class="popup">
-  <p>艾可希·米娅拥有罕见念力系时间追溯魔法，是学院的特殊关注对象。</p>
-  <button onclick="closePopup('popupInfo')">关闭</button>
+<div class="container">
+    <div class="card">
+        <h2>基本信息</h2>
+        <p>性别：<span class="highlight">女</span><br>
+        种族：苏雅人<br>
+        国籍：茉莉奈神权<br>
+        年龄：16</p>
+    </div>
+    <div class="card">
+        <h2>外貌特征</h2>
+        <p>发色：纯蓝色<br>
+        瞳色：晶蓝色<br>
+        身高：162cm<br>
+        体重：41kg<br>
+        喜欢服饰：波莱紫色圆花边礼服，苏雅莉裙</p>
+    </div>
+    <div class="card">
+        <h2>能力</h2>
+        <p>名称：知晓过去的能力<br>
+        属性：念之力<br>
+        性质：特殊魔法<br>
+        缺点：记忆会清晰印入脑海，面对不适情景可能短暂失去记忆能力</p>
+    </div>
+    <div class="card">
+        <h2>爱好</h2>
+        <p>喜欢：火腿面包、奶油面包、鸡蛋灌饼、牛奶<br>
+        性格：独来独往，喜欢吟唱魔法小型仪式，有阳光就打瞌睡</p>
+    </div>
+    <div class="card">
+        <h2>人际关系</h2>
+        <p>铃兰·迷迭香、云杉·迷迭香、云苍·迷迭香、镜华·迷迭香<br>
+        同学：梅园花 梦美</p>
+    </div>
+    <div class="card">
+        <h2>学院经历</h2>
+        <p>毕业于永蓝银川魔法培训所<br>
+        初阶魔法师，特殊能力觉醒后获得高级图书馆门禁卡</p>
+    </div>
+    <div class="card">
+        <a href="angel.html" class="button">跳转至至高神介绍</a>
+    </div>
 </div>
 
-<!-- 音乐控制 -->
-<audio id="bgMusic" loop>
-  <source src="Chord.mp3" type="audio/mpeg">
-  你的浏览器不支持音频播放
-</audio>
-<button id="musicControl" class="button-butterfly" onclick="toggleMusic()">播放/暂停音乐</button>
-
-<!-- 跳转云梦绘里香 -->
-<a href="angel.html" class="button-butterfly">查看最高神介绍</a>
+<audio id="bgMusic" src="Chord.mp3" loop></audio>
+<div id="musicButton">🎀</div>
 
 <script>
-function showPopup(id){document.getElementById(id).style.display='block';}
-function closePopup(id){document.getElementById(id).style.display='none';}
-function toggleMusic(){
-  const music=document.getElementById('bgMusic');
-  if(music.paused){music.play();}else{music.pause();}
+const music = document.getElementById('bgMusic');
+const musicButton = document.getElementById('musicButton');
+let isPlaying = false;
+musicButton.onclick = () => {
+    if(!isPlaying){
+        music.play();
+        isPlaying = true;
+    } else {
+        music.pause();
+        isPlaying = false;
+    }
 }
 </script>
 
