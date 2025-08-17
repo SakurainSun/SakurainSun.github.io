@@ -1,96 +1,130 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>艾可希·米娅资料页</title>
-<style>
-    body {
-        margin: 0;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(to bottom, #cce7ff, #f9f9ff);
-        color: #03396c;
-    }
-    header {
-        text-align: center;
-        padding: 30px;
-        background: #3f8efc;
-        color: white;
-        font-size: 2em;
-        font-weight: bold;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    .container {
-        max-width: 800px;
-        margin: 30px auto;
-        background: white;
-        border-radius: 12px;
-        padding: 20px;
-        box-shadow: 0 6px 10px rgba(0,0,0,0.1);
-    }
-    .profile-img {
-        display: block;
-        margin: 0 auto 20px auto;
-        width: 150px;
-        border-radius: 50%;
-        border: 3px solid #3f8efc;
-    }
-    h2 {
-        text-align: center;
-        color: #0b3d91;
-    }
-    p {
-        line-height: 1.6;
-    }
-    button {
-        display: block;
-        margin: 20px auto;
-        padding: 10px 20px;
-        font-size: 1em;
-        border: none;
-        border-radius: 8px;
-        background: #3f8efc;
-        color: white;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-    button:hover {
-        background: #285bb5;
-    }
-    #history {
-        display: none;
-        margin-top: 20px;
-        padding: 15px;
-        background: #eef6ff;
-        border-radius: 8px;
-        border: 1px solid #b3d1ff;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>艾可希·米娅角色档案</title>
+    <style>
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            background-color: #f0f8ff;
+            color: #003366;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #4b0082;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        .section-title {
+            color: #6a5acd;
+            cursor: pointer;
+            margin: 10px 0;
+            transition: color 0.3s;
+        }
+        .section-title:hover {
+            color: #9370db;
+        }
+        .section-content {
+            display: none;
+            padding-left: 10px;
+            margin-bottom: 10px;
+        }
+        .section-content p {
+            margin: 5px 0;
+        }
+        .magic-effect {
+            animation: glow 1s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #6a5acd; }
+            to { text-shadow: 0 0 20px #9370db; }
+        }
+        .button {
+            margin-top: 5px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #6a5acd;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-<header>艾可希·米娅的魔法资料页</header>
-<div class="container">
-    <img src="https://via.placeholder.com/150/3f8efc/ffffff?text=米娅" alt="艾可希·米娅" class="profile-img">
-    <h2>基本信息</h2>
-    <p>性别：女 | 种族：苏雅人 | 国籍：茉莉奈神权 | 年龄：16</p>
-    <p>能力：知晓过去的能力（通过物品或抽象事物追溯历史）</p>
-    
-    <button onclick="showHistory()">查看能力历史</button>
-    <div id="history">
-        <p>艾可希出生于神学世家，自小就能追溯过去的历史，记忆不会偏差。虽然无法影响现实，但历史会如实呈现在脑海中。</p>
-        <p>缺点：面对不适情景时可能短暂失去记忆能力。</p>
+
+<h1>艾可希·米娅 (Eckesh Mia)</h1>
+
+<div class="card">
+    <div class="section-title" onclick="toggleSection('basic')">基本信息 ▼</div>
+    <div class="section-content" id="basic">
+        <p>性别：女</p>
+        <p>种族：苏雅人</p>
+        <p>国籍：茉莉奈神权</p>
+        <p>年龄：16</p>
+    </div>
+
+    <div class="section-title" onclick="toggleSection('appearance')">外貌特征 ▼</div>
+    <div class="section-content" id="appearance">
+        <p>发色：纯蓝色，飘逸长直</p>
+        <p>瞳色：晶蓝色</p>
+        <p>身高：162cm</p>
+        <p>体重：41kg</p>
+        <p>腰围：52cm，胸围：70A</p>
+        <p>喜欢的服饰：波莱紫色圆花边礼服，苏雅莉裙</p>
+    </div>
+
+    <div class="section-title" onclick="toggleMagic('ability', this)">能力 ▼</div>
+    <div class="section-content" id="ability">
+        <p>能力名称：知晓过去的能力</p>
+        <p>能力介绍：可通过物品或抽象事物追溯过去历史，记忆不会偏差</p>
+        <p>能力缺点：历史画面会清晰印入脑海，面对不适情景可能短暂失去能力</p>
+        <p>能力属性：念之力，能力性质：特殊魔法</p>
+    </div>
+
+    <div class="section-title" onclick="toggleSection('hobby')">爱好 ▼</div>
+    <div class="section-content" id="hobby">
+        <p>食物喜好：火腿面包、奶油面包、鸡蛋灌饼，喜欢喝牛奶</p>
+        <p>性格习惯：喜欢吟唱魔法小型仪式，独来独往，有阳光就喜欢打瞌睡</p>
+    </div>
+
+    <div class="section-title" onclick="toggleSection('relations')">人际关系 ▼</div>
+    <div class="section-content" id="relations">
+        <p><button class="button" onclick="showFriend('铃兰·迷迭香','米娅在学院认识的第一个朋友')">铃兰·迷迭香</button></p>
+        <p><button class="button" onclick="showFriend('云杉·迷迭香','和铃兰，云苍，镜华，同为迷迭香贵族成员')">云杉·迷迭香</button></p>
+        <p><button class="button" onclick="showFriend('云苍·迷迭香','和铃兰，云杉，镜华，同为迷迭香贵族成员')">云苍·迷迭香</button></p>
+        <p><button class="button" onclick="showFriend('镜华·迷迭香','和铃兰，云苍，云杉，同为迷迭香贵族成员')">镜华·迷迭香</button></p>
+        <p><button class="button" onclick="showFriend('梅园花 梦美','米娅的同学')">梅园花 梦美</button></p>
     </div>
 </div>
 
 <script>
-    function showHistory() {
-        const historyDiv = document.getElementById('history');
-        if (historyDiv.style.display === 'none') {
-            historyDiv.style.display = 'block';
-        } else {
-            historyDiv.style.display = 'none';
-        }
+    function toggleSection(id) {
+        const section = document.getElementById(id);
+        section.style.display = (section.style.display === "block") ? "none" : "block";
+    }
+
+    function toggleMagic(id, titleElement) {
+        const section = document.getElementById(id);
+        toggleSection(id);
+        titleElement.classList.add('magic-effect');
+        setTimeout(() => {
+            titleElement.classList.remove('magic-effect');
+        }, 2000);
+    }
+
+    function showFriend(name, info) {
+        alert(name + "：\n" + info);
     }
 </script>
+
 </body>
 </html>
