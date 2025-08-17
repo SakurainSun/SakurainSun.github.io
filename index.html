@@ -11,6 +11,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     background: linear-gradient(to bottom, #fdf6fb, #e0c3fc);
     overflow-x: hidden;
+    position: relative;
 }
 header {
     text-align: center;
@@ -18,28 +19,26 @@ header {
 }
 header h1 {
     font-family: 'Great Vibes', cursive;
-    font-size: 64px;
+    font-size: 72px;
     color: #9b59b6;
     position: relative;
     display: inline-block;
-    animation: float 3s ease-in-out infinite;
+    animation: floatTitle 3s ease-in-out infinite;
 }
 header h1::after {
     content: '🎀';
     position: absolute;
-    top: -20px;
-    right: -30px;
+    top: -25px;
+    right: -40px;
     font-size: 36px;
-    animation: bounce 2s infinite;
+    animation: bounceTitle 2s infinite;
 }
-
-@keyframes float {
-    0%, 100% { transform: translateY(0);}
-    50% { transform: translateY(-10px);}
+@keyframes floatTitle {
+    0%,100% { transform: translateY(0);}
+    50% { transform: translateY(-12px);}
 }
-
-@keyframes bounce {
-    0%, 100% { transform: translateY(0);}
+@keyframes bounceTitle {
+    0%,100% { transform: translateY(0);}
     50% { transform: translateY(-10px);}
 }
 
@@ -51,15 +50,18 @@ header h1::after {
     gap: 20px;
 }
 .card {
-    background: rgba(255,255,255,0.8);
-    border-radius: 20px;
+    background: rgba(255,255,255,0.85);
+    border-radius: 25px;
     padding: 20px;
-    width: 280px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    width: 300px;
+    box-shadow: 0 15px 25px rgba(0,0,0,0.3);
     transition: transform 0.3s ease;
+    position: relative;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
 }
 .card:hover {
-    transform: translateY(-10px) scale(1.05);
+    transform: translateY(-12px) scale(1.05);
 }
 .card h2 {
     font-family: 'Great Vibes', cursive;
@@ -70,10 +72,7 @@ header h1::after {
     font-size: 14px;
     line-height: 1.5;
 }
-.highlight {
-    color: #e74c3c;
-    font-weight: bold;
-}
+.highlight { color: #e74c3c; font-weight: bold; }
 .button {
     display: inline-block;
     margin-top: 10px;
@@ -85,9 +84,7 @@ header h1::after {
     font-weight: bold;
     transition: background 0.3s;
 }
-.button:hover {
-    background-color: #b07de6;
-}
+.button:hover { background-color: #b07de6; }
 
 #musicButton {
     position: fixed;
@@ -103,6 +100,49 @@ header h1::after {
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
+
+/* 弹出小窗样式 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+}
+.modal img {
+    width: 100%;
+    border-radius: 15px;
+}
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* 粒子特效 */
+.particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 50%;
+    animation: particleMove 5s infinite;
+}
+@keyframes particleMove {
+    0% { transform: translateY(0) translateX(0);}
+    50% { transform: translateY(-200px) translateX(50px);}
+    100% { transform: translateY(0) translateX(0);}
+}
+
+@keyframes fadeIn { 0% {opacity:0} 100% {opacity:1} }
 </style>
 </head>
 <body>
@@ -111,33 +151,39 @@ header h1::after {
     <h1>艾可希·米娅</h1>
 </header>
 
+<!-- 粒子特效 -->
+<div class="particle" style="top:80px; left:50px;"></div>
+<div class="particle" style="top:120px; left:200px;"></div>
+<div class="particle" style="top:50px; left:300px;"></div>
+
 <div class="container">
-    <div class="card">
+    <div class="card" style="width:320px;">
         <h2>基本信息</h2>
         <p>性别：<span class="highlight">女</span><br>
         种族：苏雅人<br>
         国籍：茉莉奈神权<br>
         年龄：16</p>
     </div>
-    <div class="card">
+    <div class="card" style="width:260px;">
         <h2>外貌特征</h2>
         <p>发色：纯蓝色<br>
         瞳色：晶蓝色<br>
         身高：162cm<br>
         体重：41kg<br>
         喜欢服饰：波莱紫色圆花边礼服，苏雅莉裙</p>
+        <button class="button" onclick="openModal()">查看立绘</button>
     </div>
     <div class="card">
         <h2>能力</h2>
         <p>名称：知晓过去的能力<br>
         属性：念之力<br>
         性质：特殊魔法<br>
-        缺点：记忆会清晰印入脑海，面对不适情景可能短暂失去记忆能力</p>
+        缺点：面对不适情景可能短暂失去记忆能力</p>
     </div>
     <div class="card">
         <h2>爱好</h2>
-        <p>喜欢：火腿面包、奶油面包、鸡蛋灌饼、牛奶<br>
-        性格：独来独往，喜欢吟唱魔法小型仪式，有阳光就打瞌睡</p>
+        <p>火腿面包、奶油面包、鸡蛋灌饼、牛奶<br>
+        性格：独来独往，喜欢吟唱魔法仪式</p>
     </div>
     <div class="card">
         <h2>人际关系</h2>
@@ -154,22 +200,28 @@ header h1::after {
     </div>
 </div>
 
+<!-- 弹出窗口 -->
+<div class="modal" id="modal">
+    <span class="modal-close" onclick="closeModal()">✖</span>
+    <img src="mia_avatar.png" alt="米娅立绘">
+</div>
+
 <audio id="bgMusic" src="Chord.mp3" loop></audio>
 <div id="musicButton">🎀</div>
 
 <script>
+/* 音乐控制 */
 const music = document.getElementById('bgMusic');
 const musicButton = document.getElementById('musicButton');
 let isPlaying = false;
 musicButton.onclick = () => {
-    if(!isPlaying){
-        music.play();
-        isPlaying = true;
-    } else {
-        music.pause();
-        isPlaying = false;
-    }
+    if(!isPlaying){ music.play(); isPlaying=true; }
+    else { music.pause(); isPlaying=false; }
 }
+
+/* 弹窗控制 */
+function openModal(){ document.getElementById('modal').style.display='block'; }
+function closeModal(){ document.getElementById('modal').style.display='none'; }
 </script>
 
 </body>
