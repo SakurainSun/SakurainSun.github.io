@@ -1,169 +1,168 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>艾可希·米娅的魔法书</title>
+  <title>艾可希·米娅的魔法世界</title>
   <style>
     body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #1a1a2e;
+      color: #f0f0f0;
       margin: 0;
       padding: 0;
-      font-family: "STKaiti", "KaiTi", serif;
-      background: linear-gradient(135deg, #a2d5f2, #4e7ac7);
-      color: #fff;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      perspective: 1200px;
       overflow-x: hidden;
+      position: relative;
     }
-
-    h1 {
-      margin-top: 30px;
-      font-size: 3em;
-      text-shadow: 0 0 15px #fff;
-    }
-
-    .book-container {
-      width: 90%;
-      max-width: 900px;
-      margin-top: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-    }
-
-    /* 卡片翻页效果 */
-    .card {
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid rgba(255,255,255,0.3);
-      border-radius: 15px;
+    header {
+      background-color: #3a3a6e;
       padding: 20px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.2);
-      transform-origin: left;
-      transform-style: preserve-3d;
-      transition: transform 1s ease, box-shadow 0.5s ease;
-      cursor: pointer;
-      opacity: 0;
-    }
-
-    .card.show {
-      opacity: 1;
-      transform: rotateY(0deg);
-    }
-
-    .card.hidden {
-      transform: rotateY(-90deg);
-    }
-
-    .card:hover {
-      box-shadow: 0 0 30px rgba(255,255,255,0.4);
-    }
-
-    button {
-      background: rgba(255,255,255,0.2);
-      border: 1px solid #fff;
+      text-align: center;
+      font-size: 2em;
+      font-weight: bold;
       color: #fff;
-      padding: 8px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1em;
-      margin-top: 10px;
-      transition: background 0.3s, transform 0.3s;
+      position: relative;
+      z-index: 2;
     }
-
-    button:hover {
-      background: rgba(255,255,255,0.4);
-      transform: scale(1.05);
+    #mia-intro {
+      padding: 20px;
+      background-color: rgba(46,46,80,0.9);
+      margin: 20px;
+      border-radius: 10px;
+      position: relative;
+      z-index: 2;
     }
-
-    .magic-dot {
-      position: absolute;
-      width: 6px;
-      height: 6px;
+    #mia-intro h2 {
+      color: #a0c4ff;
+    }
+    #mia-intro p {
+      margin: 5px 0;
+    }
+    #game-section {
+      padding: 20px;
+      margin: 20px;
+      background-color: rgba(46,46,80,0.9);
+      border-radius: 10px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    #score {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+    .dot, .magic-dot {
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
-      background: #fff;
-      animation: float 6s linear infinite;
-      opacity: 0.8;
+      position: absolute;
+      box-shadow: 0 0 10px #ff6b6b;
+      transition: transform 0.2s;
     }
-
+    .dot {
+      background-color: #ff6b6b;
+      cursor: pointer;
+    }
+    .dot:hover {
+      transform: scale(1.5);
+    }
+    .magic-dot {
+      background-color: #a0c4ff;
+      opacity: 0.7;
+      animation: float 6s infinite;
+      z-index: 1;
+    }
     @keyframes float {
-      0% { transform: translateY(0px) translateX(0px);}
-      50% { transform: translateY(-50px) translateX(30px);}
-      100% { transform: translateY(0px) translateX(0px);}
+      0% { transform: translateY(0) translateX(0); }
+      50% { transform: translateY(-100px) translateX(50px); }
+      100% { transform: translateY(0) translateX(0); }
+    }
+    audio {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <h1>艾可希·米娅的魔法书</h1>
-  <div class="book-container">
-    <div class="card hidden" id="card1">
-      <h2>基本信息</h2>
-      <p>性别：女 | 种族：苏雅人 | 年龄：16</p>
-      <p>国籍：茉莉奈神权</p>
-      <p>发色：纯蓝色 | 瞳色：晶蓝色 | 身高：162cm</p>
-      <p>体重：41kg | 胸围：70A | 腰围：52cm</p>
-      <button onclick="showAbilities()">显示能力介绍 ✨</button>
-      <p id="abilities" style="margin-top:10px;"></p>
-    </div>
+  <header>艾可希·米娅的魔法世界</header>
 
-    <div class="card hidden" id="card2">
-      <h2>爱好与性格</h2>
-      <p>喜欢吃火腿面包、奶油面包、鸡蛋灌饼，喜欢喝牛奶。</p>
-      <p>性格独来独往，喜欢吟唱魔法小仪式，阳光下会打瞌睡。</p>
-      <p>朋友：铃兰·迷迭香、云杉·迷迭香、云苍·迷迭香、镜华·迷迭香</p>
-    </div>
+  <div id="mia-intro">
+    <h2>基本信息</h2>
+    <p>性别：女</p>
+    <p>种族：苏雅人</p>
+    <p>国籍：茉莉奈神权</p>
+    <p>年龄：16</p>
 
-    <div class="card hidden" id="card3">
-      <h2>魔法与历史</h2>
-      <p>米娅出生于神学世家，自小能追溯物品或抽象事物的过去。</p>
-      <p>能力：念之力（时间追溯魔法）</p>
-      <p>缺点：所追溯的历史会清晰印在脑海中，遇到不适情景可能短暂失去能力。</p>
-    </div>
+    <h2>外貌特征</h2>
+    <p>发色：纯蓝色，飘逸长直</p>
+    <p>瞳色：晶蓝色</p>
+    <p>身高：162cm，体重：41kg</p>
+    <p>喜欢的服饰：波莱紫色圆花边礼服，苏雅莉裙</p>
+
+    <h2>能力</h2>
+    <p>能力名称：知晓过去的能力</p>
+    <p>能力介绍：通过物品或抽象事物追溯过去的历史，记忆不偏差，神赐能力。</p>
+    <p>能力缺点：面对不适情景时会短暂失忆，忘掉刚追溯的一切。</p>
+
+    <h2>爱好与性格</h2>
+    <p>喜欢吟唱魔法仪式，独来独往。</p>
+    <p>有阳光就喜欢打瞌睡，无聊就打瞌睡……</p>
+    <p>喜欢吃火腿面包、奶油面包、鸡蛋灌饼，喜欢喝牛奶。</p>
   </div>
 
+  <div id="game-section">
+    <h2>魔法光点小游戏</h2>
+    <div id="score">分数：0</div>
+  </div>
+
+  <!-- 背景音乐，可替换为你自己的音频文件 -->
+  <audio autoplay loop>
+    <source src="Cosmic Miracle(宇宙奇迹).wav" type="audio/mpeg">
+  </audio>
+
   <script>
-    // 生成魔法光点
-    for(let i=0;i<30;i++){
-      let dot = document.createElement('div');
-      dot.classList.add('magic-dot');
-      dot.style.top = Math.random()*100 + 'vh';
-      dot.style.left = Math.random()*100 + 'vw';
-      dot.style.width = (Math.random()*6+4) + 'px';
-      dot.style.height = dot.style.width;
-      dot.style.animationDuration = (Math.random()*4+4) + 's';
+    // 游戏逻辑
+    let score = 0;
+
+    function createDot() {
+      const dot = document.createElement("div");
+      dot.classList.add("dot");
+
+      const x = Math.random() * (window.innerWidth - 30);
+      const y = Math.random() * (window.innerHeight - 30);
+      dot.style.left = x + "px";
+      dot.style.top = y + "px";
+
+      dot.onclick = function() {
+        score++;
+        document.getElementById("score").innerText = "分数：" + score;
+        dot.remove();
+      };
+
       document.body.appendChild(dot);
+
+      setTimeout(() => {
+        if (dot.parentNode) dot.remove();
+      }, 3000);
     }
 
-    // 显示能力按钮
-    function showAbilities(){
-      const abilities = `
-        <strong>能力名称：</strong>知晓过去的能力<br>
-        <strong>介绍：</strong>通过物品或抽象事物追溯过去历史，记忆不会偏差<br>
-        <strong>属性：</strong>念之力，特殊魔法<br>
-        <strong>缺点：</strong>历史会清晰印在脑海中，遇不适情景可能短暂失效
-      `;
-      document.getElementById('abilities').innerHTML = abilities;
+    setInterval(createDot, 1000);
+
+    // 魔法光环动画
+    function createMagicDot() {
+      const dot = document.createElement("div");
+      dot.classList.add("magic-dot");
+
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * window.innerHeight;
+      dot.style.left = x + "px";
+      dot.style.top = y + "px";
+
+      document.body.appendChild(dot);
+
+      setTimeout(() => dot.remove(), 8000);
     }
 
-    // 翻书效果：按顺序显示卡片
-    const cards = document.querySelectorAll('.card');
-    let index = 0;
-
-    function showNextCard() {
-      if(index < cards.length){
-        cards[index].classList.remove('hidden');
-        cards[index].classList.add('show');
-        index++;
-        setTimeout(showNextCard, 600); // 每600ms翻一页
-      }
-    }
-
-    window.onload = () => {
-      showNextCard();
-    };
+    setInterval(createMagicDot, 500);
   </script>
 </body>
 </html>
